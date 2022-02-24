@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import {IoCloseOutline} from 'react-icons/io5'
-import axios from 'axios';
+// import axios from 'axios';
+import { dataJson } from './dummy-data';
 const GeneratorContainer = styled.section`
 padding: 0 100px;
 position: relative;
@@ -136,13 +137,15 @@ const Generator = () => {
 
 
     useEffect(() => {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-            .then((response) => {
-                const res = response.data.map(item=>({name : item.name,email : item.email , isHovered : false,isCopied : false}))
-                setAPIData(res)
-            })
+        // axios.get(`https://jsonplaceholder.typicode.com/users`)
+        //     .then((response) => {
+        //         const res = response.data.map(item=>({name : item.name,email : item.email , isHovered : false,isCopied : false}))
+        //         setAPIData(res)
+        //     }) 
+        //getting cors error on vercel so created an object file
+        setAPIData(dataJson)
     }, [])
-
+    // console.log(APIData)
     function copyTextToClipboard(text) {
         if ('clipboard' in navigator) {
           return  navigator.clipboard.writeText(text);
